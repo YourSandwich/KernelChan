@@ -4,6 +4,12 @@ from PySide2.QtCore import *
 from getKernelInfo import KernelVerList
 import sys,os
 
+# TODO: Fix the install Process function.
+# TODO: Change Bash cut to RegEx
+# TODO: Implement when ListItem selected and install pressed, to parse the array and download the right Kernel with wget from the Archive
+# TODO: Implement resizible Windows
+
+
 ## Creating the MainWindow
 class Window(QWidget):
     def __init__(self):
@@ -31,9 +37,7 @@ class Window(QWidget):
     def installKernel(self):
         self.install = InstallProcess()
         self.install.show()
-        
-        global InstallOutput
-        InstallOutput = print("lol")
+
 
     ## Application Quit Popup
     def exitApp(self):
@@ -53,9 +57,18 @@ class InstallProcess(QWidget):
         self.setFixedSize(400,300)
         self.center()
 
+        #!!! WARNING this function is wrong it waits for the Terminal to finish then it display the output.
+        #!!! If you put yes in it the Program will freeze, there needs to be a better way to implement this.
+        # Output into InstallProcess Windows -> QTextBrowser
+        def letsgo():
+            output = os.popen("echo 'The Place where all the Terminal work is gona be done.'").read()
+            return output
+        Stream = letsgo()
+
         # create objects
         self.te = QTextBrowser()
-        self.te.setHtml("InstallOutput")
+        # puts the Terminal output into InstallWindow
+        self.te.setHtml(Stream)
 
         # layout
         layout = QVBoxLayout(self)
