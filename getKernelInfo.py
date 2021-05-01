@@ -2,6 +2,9 @@ import urllib.request
 import os
 from bs4 import BeautifulSoup
 
+# TODO: Change Bash cut to RegEx and fix the Version sorting
+# TODO: Scrap the Kernel URL an make sure to match the actual kernel name in the KernelVerList
+
 theurl = "https://archive.archlinux.org/packages/l/linux/"
 thepage = urllib.request.urlopen(theurl)
 

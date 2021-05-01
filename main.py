@@ -5,10 +5,10 @@ from getKernelInfo import KernelVerList
 import sys,os
 
 # TODO: Fix the install Process function.
-# TODO: Change Bash cut to RegEx
 # TODO: Implement when ListItem selected and install pressed, to parse the array and download the right Kernel with wget or cURL from the Archive
 # TODO: Implement resizible Windows
 # TODO: Clean the code.
+# TODO: Import from PySide only the needed functions
 
 ## Creating the MainWindow
 class Window(QWidget):
@@ -58,10 +58,10 @@ class InstallProcess(QWidget):
         self.center()
 
         #!!! WARNING this function is wrong it waits for the Terminal to finish then it display the output.
-        #!!! If you put yes in it the Program will freeze, there needs to be a better way to implement this.
+        #!!! If you put yes in it, the Program will freeze, there needs to be a better way to implement this.
         # Output into InstallProcess Windows -> QTextBrowser
         def letsgo():
-            output = os.popen("echo 'The Place where all the Terminal work is gona be done.'").read()
+            output = os.popen("echo 'The Place where all the Terminal work is gonna be done.'").read()
             return output
         Stream = letsgo()
 
@@ -104,10 +104,13 @@ class List(QListWidget):
                 font.setPixelSize(16)
                 item.setFont(font)
 
+def main():
+    global App,window
+    App = QApplication(sys.argv)
+    window = Window()
+    window.show()
 
-App = QApplication(sys.argv)
-window = Window()
-window.show()
+    App.exec_()
+    sys.exit(0)
 
-App.exec_()
-sys.exit(0)
+main()
