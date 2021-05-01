@@ -25,7 +25,7 @@ class Window(QWidget):
 
     def center(self):
         qRect = self.frameGeometry()
-        centerPoint = QDesktopWidget().availableGeometry().center()
+        centerPoint = QGuiApplication.primaryScreen().availableGeometry().center()
         qRect.moveCenter(centerPoint)
         self.move(qRect.topLeft())
 
@@ -105,7 +105,7 @@ class InstallProcess(QWidget):
 
     def center(self):
         qRect = self.frameGeometry()
-        centerPoint = QDesktopWidget().availableGeometry().center()
+        centerPoint = QGuiApplication.primaryScreen().availableGeometry().center()
         qRect.moveCenter(centerPoint)
         self.move(qRect.topLeft())
 

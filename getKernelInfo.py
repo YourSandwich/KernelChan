@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 theurl = "https://archive.archlinux.org/packages/l/linux/"
 thepage = urllib.request.urlopen(theurl)
 
-soup = BeautifulSoup(thepage)
+soup = BeautifulSoup(thepage, features="lxml")
 
 project_href = [i['href'] for i in soup.find_all('a', href=True)]
 del project_href[0]
