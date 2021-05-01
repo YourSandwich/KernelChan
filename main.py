@@ -6,9 +6,9 @@ import sys,os
 
 # TODO: Fix the install Process function.
 # TODO: Change Bash cut to RegEx
-# TODO: Implement when ListItem selected and install pressed, to parse the array and download the right Kernel with wget from the Archive
+# TODO: Implement when ListItem selected and install pressed, to parse the array and download the right Kernel with wget or cURL from the Archive
 # TODO: Implement resizible Windows
-
+# TODO: Clean the code.
 
 ## Creating the MainWindow
 class Window(QWidget):
