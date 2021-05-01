@@ -6,7 +6,7 @@ import sys,os
 
 # TODO: Fix the install Process function.
 # TODO: Implement when ListItem selected and install pressed, to parse the array and download the right Kernel with wget or curl from the Archive
-# TODO: Implement resizible Windows
+# TODO: Implement resizable Windows
 # TODO: Clean the code.
 # TODO: Import from PySide only the needed functions
 
