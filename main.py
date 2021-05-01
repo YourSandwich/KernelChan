@@ -1,11 +1,11 @@
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2.QtCore import *
-from getKernelInfo import KernelVerList
+from getKernelInfo import KernelVerList, KernelURL
 import sys,os
 
 # TODO: Fix the install Process function.
-# TODO: Implement when ListItem selected and install pressed, to parse the array and download the right Kernel with wget or cURL from the Archive
+# TODO: Implement when ListItem selected and install pressed, to parse the array and download the right Kernel with wget or curl from the Archive
 # TODO: Implement resizible Windows
 # TODO: Clean the code.
 # TODO: Import from PySide only the needed functions
@@ -99,11 +99,10 @@ class List(QListWidget):
             ## Taking the output from getKernelInfo and put it in the List
             for i in KernelVerList:
                 item = QListWidgetItem(i, self.aList)
-
                 font = QFont()
                 font.setPixelSize(16)
                 item.setFont(font)
-
+            
 def main():
     global App,window
     App = QApplication(sys.argv)
