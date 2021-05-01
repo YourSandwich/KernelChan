@@ -1,6 +1,5 @@
-from PySide2.QtWidgets import *
-from PySide2.QtGui import *
-from PySide2.QtCore import *
+from PySide2.QtWidgets import QWidget, QPushButton, QListWidget, QApplication, QListWidgetItem, QMessageBox, QTextBrowser, QVBoxLayout
+from PySide2.QtGui import QGuiApplication, QIcon, QFont
 from getKernelInfo import KernelVerList, KernelURL
 import sys,os
 
@@ -8,7 +7,6 @@ import sys,os
 # TODO: Implement when ListItem selected and install pressed, to parse the array and download the right Kernel with wget or curl from the Archive
 # TODO: Implement resizable Windows
 # TODO: Clean the code.
-# TODO: Import from PySide only the needed functions
 
 ## Creating the MainWindow
 class Window(QWidget):
