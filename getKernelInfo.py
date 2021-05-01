@@ -23,6 +23,3 @@ for t in project_href[::2]:
     KernelVer = os.popen("echo " + t + " | cut -d'.' -f1,2,3 | sed 's/.arc//g' | sed 's/-x86_64//g' | sed 's/.ar//g' | sed 's/h//g'")
     for i in KernelVer.read().split('\n')[::2]:   
         KernelVerList.append(i)
-
-print(KernelURL)
-print(KernelVerList)

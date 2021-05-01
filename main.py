@@ -33,11 +33,9 @@ class Window(QWidget):
         appIcon = QIcon('icon.png')
         self.setWindowIcon(appIcon)
 
-
     def installKernel(self):
         self.install = InstallProcess()
         self.install.show()
-
 
     ## Application Quit Popup
     def exitApp(self):
@@ -48,7 +46,33 @@ class Window(QWidget):
         elif askUser == QMessageBox.No:
             pass
 
-## Window after Install Button was pressed
+## Making an Button
+class Button(QPushButton):
+    def setButton(self, name, x, y,function):
+        button = QPushButton(name,self)
+        button.move(x,y)
+
+        button.clicked.connect(function)
+
+## Making a List
+class List(QListWidget):
+        def setList(self,x,y):
+            global aList
+
+            self.aList = QListWidget(self)
+            self.aList.resize(550,500)
+            self.aList.move(x,y)
+            aList = self.aList
+            ## Taking the output from getKernelInfo and put it in the List
+                       
+        def addItem(self):
+            for i in KernelVerList:
+                self.item = QListWidgetItem(i, aList)
+                font = QFont()
+                font.setPixelSize(16)
+                self.item.setFont(font)
+
+
 class InstallProcess(QWidget):
     def __init__(self, *args): 
         QWidget.__init__(self, *args) 
@@ -56,6 +80,10 @@ class InstallProcess(QWidget):
         self.setWindowTitle("Kernel Installation")
         self.setFixedSize(400,300)
         self.center()
+
+        def Installation():
+                DeList = List()
+                print(DeList.item)
 
         #!!! WARNING this function is wrong it waits for the Terminal to finish then it display the output.
         #!!! If you put yes in it, the Program will freeze, there needs to be a better way to implement this.
@@ -81,33 +109,14 @@ class InstallProcess(QWidget):
         qRect.moveCenter(centerPoint)
         self.move(qRect.topLeft())
 
-## Making an Button
-class Button(QPushButton):
-    def setButton(self, name, x, y,function):
-        button = QPushButton(name,self)
-        button.move(x,y)
-
-        button.clicked.connect(function)
-
-## Making a List
-class List(QListWidget):
-        def setList(self,x,y):
-            self.aList = QListWidget(self)
-            self.aList.resize(550,500)
-            self.aList.move(x,y)
-
-            ## Taking the output from getKernelInfo and put it in the List
-            for i in KernelVerList:
-                item = QListWidgetItem(i, self.aList)
-                font = QFont()
-                font.setPixelSize(16)
-                item.setFont(font)
-            
 def main():
-    global App,window
+    global App,window,DeList
     App = QApplication(sys.argv)
     window = Window()
+    DeList = List()
     window.show()
+    
+    DeList.addItem()
 
     App.exec_()
     sys.exit(0)
