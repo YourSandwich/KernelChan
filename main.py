@@ -3,20 +3,15 @@ from PySide2.QtGui import QGuiApplication, QIcon, QFont
 from getKernelInfo import KernelVerList, KernelURL
 import sys,os,time
 
-#!!! If you run it as Sudo it will install you the Kernel
-
-
 #! Base
 # TODO: Fix InstallationWindow wired behavior.
 # TODO: Implement resizable Windows
 # TODO: Clean the code.
 # TODO: Fix KernelVer sorting
-
-# TODO: First Release 1.0
 # TODO: Aur Package
 
 #! Features
-# TODO: Being able to se what is currently installed.
+# TODO: Being able to see what is currently installed.
 # TODO: Being able to choose download destination?
 # TODO: Add Linux Headers, as optional download.
 # TODO: Asking for Sudo
@@ -96,8 +91,7 @@ class InstallProcess(QWidget):
     def Installation(self):
         #! It works
         os.system("wget "+ URL + " -P ~/ && pacman -U "+ URL + " --noconfirm")
-        os.system("echo it works!")
-        print("done")
+        print("Installation finished!")
 
     def center(self):
         qRect = self.frameGeometry()
@@ -125,9 +119,6 @@ def selected():
     TheSelect = TheSelect.strip("'['']'")
     URL = [name for name in KernelURL if TheSelect in name]
     URL = '+'.join(URL).strip("'['']'").split("+", 1)[0]
-
-    print(URL)
-
 
 def main():
     global App,window

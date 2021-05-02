@@ -1,9 +1,16 @@
 # KernelChan
+
 A Linux Kernel Manager for ArchLinux
 
 This Project is FOSS do with it, waht you want.
 
 This is my first time using PySide/PyQt.
 
-Progress:
-https://imgur.com/a/z4F6pM7
+Compilation dependencies:
+Python3
+PySide2
+python-beautifulsoup4
+PyInstaller
+
+Compilation:
+pyinstaller --name="KernelChan" --icon=icon.png --onefile --windowed main.py
