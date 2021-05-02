@@ -3,9 +3,28 @@ from PySide2.QtGui import QGuiApplication, QIcon, QFont
 from getKernelInfo import KernelVerList, KernelURL
 import sys,os,time
 
-# TODO: Fix the install Process function.
+#!!! If you run it as Sudo it will install you the Kernel
+
+
+#! Base
+# TODO: Fix InstallationWindow wired behavior.
 # TODO: Implement resizable Windows
 # TODO: Clean the code.
+# TODO: Fix KernelVer sorting
+
+# TODO: First Release 1.0
+# TODO: Aur Package
+
+#! Features
+# TODO: Being able to se what is currently installed.
+# TODO: Being able to choose download destination?
+# TODO: Add Linux Headers, as optional download.
+# TODO: Asking for Sudo
+
+#! Unrealistic Features
+# TODO: Seeing Terminal output in a Window
+# TODO: Installing multiple Kernels
+# TODO: Installing Custom Kernel
 
 ## Creating the MainWindow
 class Window(QWidget):
@@ -75,7 +94,9 @@ class InstallProcess(QWidget):
         self.setLayout(self.layout)
 
     def Installation(self):
-        os.system("wget "+ URL + " -P ~/")
+        #! It works
+        os.system("wget "+ URL + " -P ~/ && pacman -U "+ URL + " --noconfirm")
+        os.system("echo it works!")
         print("done")
 
     def center(self):
