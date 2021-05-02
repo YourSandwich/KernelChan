@@ -1,7 +1,7 @@
-from PySide2.QtWidgets import QWidget, QPushButton, QListWidget, QApplication, QListWidgetItem, QMessageBox, QTextBrowser, QVBoxLayout
+from PySide2.QtWidgets import QWidget, QPushButton, QListWidget, QApplication, QListWidgetItem, QMessageBox, QLabel, QVBoxLayout
 from PySide2.QtGui import QGuiApplication, QIcon, QFont
 from getKernelInfo import KernelVerList, KernelURL
-import sys,os
+import sys,os,time
 
 # TODO: Fix the install Process function.
 # TODO: Implement resizable Windows
@@ -34,6 +34,8 @@ class Window(QWidget):
     def installKernel(self):
         self.install = InstallProcess()
         self.install.show()
+        self.install.Installation()
+        self.install.hide()
 
     ## Application Quit Popup
     def exitApp(self):
@@ -58,33 +60,23 @@ class InstallProcess(QWidget):
         QWidget.__init__(self, *args) 
 
         self.setWindowTitle("Kernel Installation")
-        self.setMinimumSize(400,300)
-        self.center()
-
-        def Installation():
-            output = os.popen("wget "+ URL + " -P ~/").read()
-            return output
-        Stream = Installation() 
-
-        #!!! WARNING this function is wrong it waits for the Terminal to finish then it display the output.
-        #!!! If you put yes in it, the Program will freeze, there needs to be a better way to implement this.
-        # Output into InstallProcess Windows -> QTextBrowser
-        """
-        def letsgo():
-            output = os.popen("echo 'The Place where all the Terminal work is gonna be done.'").read()
-            return output
-        Stream = letsgo()
-        """
+        self.setFixedSize(400,120)
+        self.center()   
 
         # create objects
-        self.te = QTextBrowser()
+        self.te = QLabel()
         # puts the Terminal output into InstallWindow
-        self.te.setHtml(Stream)
+        pic = 'Installing.png'
+        self.te.setPixmap(pic)
 
         # layout
-        layout = QVBoxLayout(self)
-        layout.addWidget(self.te)
-        self.setLayout(layout)      
+        self.layout = QVBoxLayout(self)
+        self.layout.addWidget(self.te)
+        self.setLayout(self.layout)
+
+    def Installation(self):
+        os.system("wget "+ URL + " -P ~/")
+        print("done")
 
     def center(self):
         qRect = self.frameGeometry()
@@ -125,4 +117,5 @@ def main():
     App.exec_()
     sys.exit(0)
 
-main()
+if __name__ == '__main__':
+    main()
